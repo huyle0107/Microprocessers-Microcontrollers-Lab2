@@ -12,6 +12,6 @@ extern int MAX_LED_MATRIX;
 
 void writeCOL(int i);
 void writeROW(int i);
-void updateLEDMatrix(int index);
+void updateLEDMatrix(int check, int j, int index);
 
 #endif /* INC_LED_MATRIX_H_ */

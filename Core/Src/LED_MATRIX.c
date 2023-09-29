@@ -22,14 +22,14 @@ uint8_t COL[8] = {
 };
 
 uint8_t A[8] = {
-		0x18, // row1 --> 0001 1000
-		0x3C, // row2 --> 0011 1100
-		0x66, // row3 --> 0110 0110
-		0x66, // row4 --> 0110 0110
-		0x7E, // row5 --> 0111 1110
-		0x7E, // row6 --> 0111 1110
-		0x66, // row7 --> 0110 0110
-		0x66  // row8 --> 0110 0110
+		0x00, // row1 --> 0000 0000
+		0x3F, // row2 --> 0011 1111
+		0x7F, // row3 --> 0111 1111
+		0xCC, // row4 --> 1100 1100
+		0xCC, // row5 --> 1100 1100
+		0x7F, // row6 --> 0111 1111
+		0x3F, // row7 --> 0011 1111
+		0x00, // row8 --> 0000 0000
 };
 
 void writeCOL(int i)
@@ -56,8 +56,16 @@ void writeROW(int i)
 	HAL_GPIO_WritePin(GPIOB, ROW7_Pin, (A[i] >> 0) & 0x01);
 }
 
-void updateLEDMatrix(int index)
+void updateLEDMatrix(int check, int j, int index)
 {
-	writeCOL(index);
-	writeROW(index);
+	if (check == 0)
+	{
+		writeCOL(index);
+		writeROW(index);
+	}
+	else
+	{
+		writeCOL((index+j)%8);
+		writeROW(index);
+	}
 }

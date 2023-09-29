@@ -98,11 +98,12 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   int index_led = 0, index_led_matrix = 0;
+  int j = 0, check = 1;
   int hour = 0, minute = 59, second = 50;
   setTimer1(1000);
   setTimer2(1000);
   setTimer3(500);
-  setTimer4(1000);
+  setTimer4(10);
 
   while (1)
   {
@@ -149,8 +150,13 @@ int main(void)
 	  if (timer4_flag == 1)
 	  {
 		  setTimer4(10);
-		  updateLEDMatrix(index_led_matrix++);
-		  if(index_led_matrix == MAX_LED_MATRIX) index_led_matrix = 0;
+		  updateLEDMatrix(check, j, index_led_matrix++);
+		  if(j == 8) j = 0;
+		  if(index_led_matrix == MAX_LED_MATRIX)
+		  {
+			  index_led_matrix = 0;
+			  j++;
+		  }
 	  }
     /* USER CODE BEGIN 3 */
   }
