@@ -9,7 +9,7 @@
 #include "display7SEG.h"
 
 const int MAX_LED = 4;
-int led_buffer [4] = {1 , 2 , 3 , 4};
+int led_buffer [4] = {1 , 2 , 3 , 0};
 
 uint8_t segment7display[10] = {
 		0x02,  // 0 --> 0000 0010
